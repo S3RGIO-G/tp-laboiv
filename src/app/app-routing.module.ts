@@ -19,6 +19,11 @@ const routes: Routes = [
     loadComponent: () => import('./pages/login/login.component').then( m => m.LoginComponent),
   },
   {
+    path: "quien-soy",
+    title: "Quien soy",
+    loadComponent: () => import('./pages/quien-soy/quien-soy.component').then( m => m.QuienSoyComponent),
+  },
+  {
     path: "**",
     redirectTo: "home",
     pathMatch: "full"
