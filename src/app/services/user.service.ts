@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  User
 } from '@angular/fire/auth';
 import {
   Firestore,
@@ -18,7 +19,7 @@ import {
   updateDoc,
   getDocs,
 } from '@angular/fire/firestore';
-import { User } from '../classes/user';
+// import { User } from '../classes/user';
 import { Observable, Subscription } from 'rxjs';
 
 @Injectable({
@@ -26,11 +27,10 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class UserService {
   usersRef = collection(this.firestore, 'users');
-  subscription!: Subscription;
-  currentUser: User = JSON.parse(localStorage.getItem('user') || '{}');
+  // subscription!: Subscription;
+  // currentUser: User = JSON.parse(localStorage.getItem('user') || '{}');
 
   constructor(private auth: Auth, private firestore: Firestore) {}
-
 
   //** AUTH **
   register({ email, password }: any) {
@@ -45,6 +45,9 @@ export class UserService {
     return signOut(this.auth);
   }
 
+  getCurrentUser(){
+    return this.auth.currentUser;
+  }
 
   //** FIRESTORE **
   addUserAuto(user: User) {
