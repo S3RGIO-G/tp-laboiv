@@ -5,7 +5,16 @@
         <img src="./../../../assets/icon.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
         <span class="ms-2 text-white">Inicio</span>
       </a>
-      <button  class="btn btn-primary" (click)="loguot()">Loguot</button>
+      <button *ngIf="usuario !== null" class="btn btn-primary" (click)="loguot()">Loguot</button>
+      <div *ngIf="usuario === null">
+        <a routerLink="/login" >
+          <button class="btn btn-primary">Iniciar Sesión</button>
+        </a>
+        <a routerLink="/register" >
+          <button class="btn btn-primary ms-2" (click)="loguot()">Registrarme</button>
+        </a>
+      </div>
+
     </div>
   </nav>
   <div class="container-fluid text-center p-5">

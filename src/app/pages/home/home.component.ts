@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,28 +9,33 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class HomeComponent implements OnInit {
-  usuario!: User | null;
+  usuario : User | null = null;
 
   constructor(private userService: UserService, private router: Router) {
   }
   
   ngOnInit() {
     this.cargarUsuario();
+
   }
 
   loguot() {
     this.userService
       .logout()
       .then((e) => {
-        console.log('logout exitoso');
+        this.usuario = null;
+        localStorage.clear();
       })
       .catch((err) => {});
   }
 
   cargarUsuario(){
-    this.usuario = this.userService.getCurrentUser();
+    let user = localStorage.getItem('user');
+    if(user !== null){
+      this.usuario = JSON.parse(user);
+    }
   }
 }

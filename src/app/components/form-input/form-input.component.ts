@@ -20,6 +20,7 @@ export class FormInputComponent implements OnInit {
   @Input() type!: string;
   @Input() helpText!: string;
   @Input() errorText!: string;
+  @Input() keyUp : Function = (e:any)=>{};
   form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective) {}

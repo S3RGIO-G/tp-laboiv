@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
       .login(this.formLog.value)
       .then((res) => {
         this.router.navigate(['/home']);
+        localStorage.setItem('user', JSON.stringify(res.user))
       })
       .catch((err) => {
         this.loading = false;
