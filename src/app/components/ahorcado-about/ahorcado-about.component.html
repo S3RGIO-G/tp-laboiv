@@ -1,0 +1,14 @@
+<div class="container-fluid contenedor d-flex flex-column justify-content-center align-items-center">
+  <div class="d-flex flex-column justify-content-center align-items-center text-center p-2 p-md-4 contenido">
+    <h2 class="fw-bold fs-1 mb-4">AHORCADO</h2>
+    <p class="descripcion">Es un juego de palabras o adivinanzas en el que un jugador intenta adivinar una palabra
+      oculta letra por letra antes de que se complete la representación gráfica de un muñeco ahorcado. </p>
+
+    <p><b>OBJETIVO: </b> Adivinar la palabra oculta sin usar todos los intentos</p>
+    <b>REGLAS: </b>
+    <li>Las letras ocultas que coicidan con la letra seleccionada, deben revelarse.</li>
+    <li class="mb-3">Si la letra seleccionada no coincide con niguna oculta, se pierde un intento</li>
+
+    <button class="btn btn-success fs-4" (click)="playGame.emit(true)">¡Jugar!</button>
+  </div>
+</div>

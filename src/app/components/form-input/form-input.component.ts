@@ -18,9 +18,8 @@ export class FormInputComponent implements OnInit {
   @Input() label!: string;
   @Input() class!: string;
   @Input() type!: string;
-  @Input() helpText!: string;
-  @Input() errorText!: string;
-  @Input() keyUp : Function = (e:any)=>{};
+  @Input() readOnly!: boolean;
+
   form!: FormGroup;
 
   constructor(private rootFormGroup: FormGroupDirective) {}

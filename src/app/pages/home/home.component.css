@@ -1,3 +1,38 @@
-nav{
-  background-color: rgb(16, 75, 165);
+
+.content-container{
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-secondary);
+}
+
+.row-title{
+  height: 10%;
+}
+
+.row-btns{
+  height: 90%;
+  width: 100%;
+  max-width: 1000px;   
+}
+.col-game{
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-game{
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  border: 5px solid var(--color-tertiary);
+  background-color: var(--color-primary);  
+  color: var(--color-secondary);
+}
+.img-game{        
+  position: absolute;
+  width: 200px;
 }

@@ -1,0 +1,13 @@
+<app-navbar [showButtons]="true" (userEvent)="usuario = $event" (loadingEvent)="loading = $event"></app-navbar>
+
+<ng-container *ngIf="!playGame">
+  <app-ahorcado-about (playGame)="playGame = $event"></app-ahorcado-about>
+</ng-container>
+
+<ng-container *ngIf="playGame">
+  <app-ahorcado-game (loadingEvent)="loading = $event" (playGame)="playGame = $event"></app-ahorcado-game>
+</ng-container>
+
+<app-chat [user]="usuario"></app-chat>
+<app-spinner [showSpinner]="loading"></app-spinner>
+

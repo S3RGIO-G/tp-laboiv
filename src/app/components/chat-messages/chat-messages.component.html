@@ -1,0 +1,27 @@
+<ng-container *ngFor="let message of messages; let i = index">
+
+  <div class="d-flex 
+    {{message.user === user.email ?'justify-content-end' : 'justify-content-start'}} 
+    {{i === 0 ? 'mt-0' : messages[i-1] && message.user === messages[i-1].user ? 'mt-1' : 'mt-4'}}">
+
+    <div class="msg_container position-relative pb-4
+    {{message.user === user.email ?'msg_send' : 'msg_recived'}}">
+
+      <div *ngIf="
+      i === 0 
+      || message.user !== user.email 
+      && messages[i-1] 
+      && message.user !== messages[i-1].user">
+
+        <b> ~ {{message.user}}</b>
+      </div>
+
+      {{message.message}}
+
+      <span class="msg_time position-absolute end-0 bottom-0 me-3 mb-1">
+        {{message.date}} {{message.hour.slice(0,5)}}
+      </span>
+    </div>
+  </div>
+
+</ng-container>

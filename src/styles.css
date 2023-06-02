@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  --color-primary: #444874;
+  --color-secondary: #69ccfd;
+  --color-tertiary: #0d143a;
+}
+
+.color-primary{
+  color: var(--color-primary) !important;
+}
+.color-secondary{
+  color: var(--color-secondary) !important;
+}
+.color-tertiary{
+  color: var(--color-tertiary) !important;
+}
+
+.bg-color-primary{
+background-color: var(--color-primary) !important;
+}
+.bg-color-secondary{
+background-color: var(--color-secondary) !important;
+}
+.bg-color-tertiary{
+background-color: var(--color-tertiary) !important;
+}

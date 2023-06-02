@@ -1,0 +1,12 @@
+<app-navbar [showButtons]="true" (userEvent)="usuario = $event" (loadingEvent)="loading = $event"></app-navbar>
+
+<ng-container *ngIf="!playGame">
+  <app-mayoromenor-about (playGame)="playGame = $event"></app-mayoromenor-about>
+</ng-container>
+
+<ng-container *ngIf="playGame">
+  <app-mayoromenor-game (playGame)="playGame = $event"></app-mayoromenor-game>
+</ng-container>
+
+<app-chat [user]="usuario"></app-chat>
+<app-spinner [showSpinner]="loading"></app-spinner>

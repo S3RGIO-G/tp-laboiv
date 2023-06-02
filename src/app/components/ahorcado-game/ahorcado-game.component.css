@@ -1,0 +1,40 @@
+.main{
+  min-height: 90vh;
+}
+.img-container{
+  height: 40vh;
+}
+
+img{  
+  width: 80vw;
+  max-width: 400px;
+  height: 100%;
+  background-color: var(--color-primary);
+}
+
+.word-container{
+  height: 15vh;
+  width: 80vw;
+}
+
+.word-letter{
+  width: 14px;
+  height: 35px;
+}
+.attemps{
+  background-color: aliceblue;
+  font-size: 16px;
+  border-radius: 50px;
+  width: 32px;
+}
+
+@media (width > 350) {
+  .word-letter{
+    width: 20px;
+  }
+
+  img{
+    width: 70vw;
+    height: 400px;
+  }
+}

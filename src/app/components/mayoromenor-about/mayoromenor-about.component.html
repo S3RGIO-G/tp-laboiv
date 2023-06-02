@@ -1,0 +1,16 @@
+<div class="container-fluid contenedor d-flex flex-column justify-content-center align-items-center">
+  <div class="d-flex flex-column justify-content-center align-items-center text-center p-2 p-md-4 contenido">
+    <h2 class="fw-bold fs-1 mb-4">MAYOR O MENOR</h2>
+    <p class="descripcion">Es un juego de cartas muy sencillo y rápido de jugar. Consiste en intentar adivinar si la siguiente carta que saldrá es mayor o menor a la actual.</p>
+
+    <p><b>OBJETIVO: </b> Adivinar la mayor cantidad de cartas</p>
+    <b>REGLAS: </b>
+    <li>Si la prediccion del jugador no se cumple, se termina el juego.</li>
+    <li>Si la siguiente carta es igual a la anterior, es empate y sigue el juego</li>
+    <li class="mb-3">Si el jugador acierta, suma un punto y sigue el juego</li>
+
+    <div>
+      <button class="btn btn-success fs-4" (click)="playGame.emit(true)">¡Jugar!</button>
+    </div>
+  </div>
+</div>

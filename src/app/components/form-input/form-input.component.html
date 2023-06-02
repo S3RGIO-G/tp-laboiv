@@ -1,11 +1,8 @@
 <ng-container [formGroup]="form">
   <div class="form-floating mb-3">
     <input [type]="type" class="form-control {{class}}" [formControlName]="controlName" [id]="controlName" 
-      [placeholder]="label" (keyup)="keyUp($event)">
+      [placeholder]="label" [readonly]="readOnly">
     <label [for]="controlName">{{label}}</label>
-    <div class="invalid-feedback">
-      {{errorText}}
-    </div>
+    <ng-content></ng-content>
   </div>
-
 </ng-container>

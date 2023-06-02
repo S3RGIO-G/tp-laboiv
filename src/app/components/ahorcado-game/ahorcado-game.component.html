@@ -1,0 +1,42 @@
+<div class="bg-color-secondary main">
+  <div class="reset-container position-absolute end-0 pe-2 pt-2 pe-md-5 pt-md-5">
+    <button class="btn" (click)="restart()"><i class="fa-solid fa-arrow-rotate-left fs-1 text-danger"></i></button>
+  </div>
+
+  <div class="reset-container position-absolute start-0 ps-2 pt-2 ps-md-5 pt-md-5">
+    <button class="btn" (click)="playGame.emit(false)">
+      <i class="fa-solid fa-arrow-left fs-1"></i>
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-center pt-5">
+    <div class=" img-container position-relative">
+      <img class="rounded p-4" src="../../../assets/ahorcado/horca+{{errors}}.png" alt="">
+      <b class="attemps position-absolute end-0 bottom-0 p-1 text-center m-2">{{7-errors}}</b>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="word-container d-flex justify-content-center align-items-center gap-3">
+      <ng-container *ngFor="let item of letters">
+        <div *ngIf="item.letter !== ' '" class="word-letter border-bottom border-5 border-black">
+          <div *ngIf="item.active" class="text-uppercase fs-5 text-center fw-bold">
+            {{item.letter}}
+          </div>
+        </div>
+        <div *ngIf="item.letter === ' '" class="word-letter"></div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="keyboard-container d-flex justify-content-center align-items-start">
+    <app-keyboard #keyboard (selectedKeyEvent)="searchConcidences($event)"></app-keyboard>
+  </div>
+</div>
+
+<app-modal-custom [showModal]="showModal" (hideModalEvent)="showModal = $event">
+  <h2 class="mb-4">{{modalInfo?.titulo}}</h2>
+  <span class="text-center">La palabra era :</span>
+  <b class="text-center mb-2">{{wordToGuess}}</b>
+  <button class="btn {{modalInfo?.classButton}}" (click)="restart()">{{modalInfo?.textButton}}</button>
+</app-modal-custom>

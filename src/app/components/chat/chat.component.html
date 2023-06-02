@@ -1,0 +1,28 @@
+<ng-container *ngIf="user !== null">
+  <div class="position-fixed bottom-0 end-0 pe-4 pb-4">
+    <button *ngIf="!showChat" class="btn bg-color-tertiary text-light chat-icon" (click)="showChatFunc()"><i
+        class="fa-sharp fa-solid fa-comments fs-2"></i></button>
+  </div>
+  
+  <div *ngIf="showChat" class="chat rounded position-fixed bottom-0 end-0 w-100 m-sm-3 m-lg-5">
+    <!-- //*Header -->
+    <div class="header p-3 rounded-top fs-4 d-flex justify-content-between align-items-center bg-color-tertiary text-light">
+      <div class="">
+        <i class="fa-sharp fa-solid fa-comments me-2"></i>
+        <b>Chat</b>
+      </div>
+      <i class="fa-solid fa-xmark fs-3 text-danger close-btn" (click)="showChat = false"></i>
+    </div>
+  
+    <!-- //*Messages -->
+    <div #messagesBox class="messages py-4 overflow-y-auto">
+      <app-chat-messages [messages]="messages" [user]="user"></app-chat-messages>
+    </div>
+  
+    <!-- //*Input -->
+    <form [formGroup]="formChat" class="input d-flex p-2 bg-color-tertiary" (submit)="onSubmit()">
+      <input type="text" class="form-control {{message.errors? 'is-invalid' : ''}}" formControlName="message">
+      <button class="btn ms-2" type="submit"><i class="fa-solid fa-paper-plane fs-3 text-light"></i></button>
+    </form>
+  </div>
+</ng-container>

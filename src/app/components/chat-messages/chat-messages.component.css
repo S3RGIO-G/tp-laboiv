@@ -1,0 +1,23 @@
+.msg_container{
+  min-width: 40%;
+  max-width: 80%;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.msg_recived{
+  margin-left: 10px;
+  border-start-start-radius: 5px;
+  /* background-color: #82ccdd; */
+  background-color: #4fc6e0;
+}
+.msg_send{
+  margin-right: 10px;
+  border-start-end-radius: 5px;
+  /* background-color: #78e08f; */
+  background-color: #52dc70;
+}
+
+.msg_time{
+  font-size: 14px;
+}

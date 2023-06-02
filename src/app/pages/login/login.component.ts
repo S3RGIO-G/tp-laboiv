@@ -10,6 +10,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { ModalUsersComponent } from 'src/app/components/modal-users/modal-users.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +25,8 @@ import { UserService } from 'src/app/services/user.service';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    ModalUsersComponent,
+    SpinnerComponent
   ],
 })
 export class LoginComponent implements OnInit {
@@ -51,25 +55,49 @@ export class LoginComponent implements OnInit {
     this.userService
       .login(this.formLog.value)
       .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.router.navigate(['/home']);
-        localStorage.setItem('user', JSON.stringify(res.user))
       })
       .catch((err) => {
         this.loading = false;
         this.showAlert = true;
-        this.textError = 'Error, algo salio mal';
-        if (err.code === 'auth/missing-email')
-          this.textError = 'Por favor ingrese un correo electronico';
-        if (err.code === 'auth/missing-password')
-          this.textError = 'Por favor ingrese una contraseña';
-        if (err.code === 'auth/invalid-email')
-          this.textError = 'El correo no es valido';
-        if (err.code === 'auth/user-not-found')
-          this.textError = 'El usuario no esta registrado';
-        if (err.code === 'auth/wrong-password')
-          this.textError = 'La contraseña no es correcta';
-        if (err.code === 'auth/network-request-failed')
-          this.textError = 'Se perdió la conexion a internet';
+
+        switch (err.code) {
+          case 'auth/missing-email':
+            this.textError = 'Por favor ingrese un correo electronico';
+            break;
+          case 'auth/missing-password':
+            this.textError = 'Por favor ingrese una contraseña';
+            break;
+          case 'auth/invalid-email':
+            this.textError = 'El correo no es valido';
+            break;
+          case 'auth/auth/user-not-found':
+            this.textError = 'El usuario no esta registrado';
+            break;
+          case 'auth/wrong-password':
+            this.textError = 'La contraseña no es correcta';
+            break;
+          case 'auth/network-request-failed':
+            this.textError = 'Se perdió la conexion a internet';
+            break;
+          default:
+            this.textError = 'Error, algo salio mal';
+        }
       });
+  }
+  userSelected(event: any) {
+    this.password.setValue(event.password);
+    this.email.setValue(event.email);
+  }
+
+  get showPassword() {
+    return this.formLog.controls['showPassword'];
+  }
+  get password() {
+    return this.formLog.controls['password'];
+  }
+  get email() {
+    return this.formLog.controls['email'];
   }
 }

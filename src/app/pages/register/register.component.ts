@@ -9,8 +9,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormInputComponent } from 'src/app/components/form-input/form-input.component';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute  } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+import { FormValidator } from 'src/app/validators/forms.validator';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +26,7 @@ import { UserService } from 'src/app/services/user.service';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    SpinnerComponent
   ],
 })
 export class RegisterComponent implements OnInit {
@@ -32,20 +35,19 @@ export class RegisterComponent implements OnInit {
   textError?: string;
   formReg: FormGroup;
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private aRoute : ActivatedRoute) {
     this.formReg = new FormGroup({
-      email: new FormControl('',Validators.required),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
+      email: new FormControl('',[FormValidator.email]),
+      password: new FormControl('', [FormValidator.password,Validators.minLength(8)]),
+      confirmPassword: new FormControl('', [FormValidator.confirmPassword]),
       showPassword: new FormControl(),
     });
   }
   ngOnInit(): void {}
 
-
   onSubmit() {
-    this.formReg.markAllAsTouched();
-    if (this.formReg.status === 'INVALID') return;
+    this.verifyValues();
+    if (this.formReg.invalid) return;
     this.loading = true;
     this.userService
       .register(this.formReg.value)
@@ -69,14 +71,21 @@ export class RegisterComponent implements OnInit {
     this.showAlert = value;
   }
 
-  validatorEmail(e:any){
-    
+  verifyValues(){
+    if(!this.email.value) this.email.setErrors({email: true});
+    if(!this.password.value) this.password.setErrors({password: true});
   }
-  validatorPassword(e:Event){
-    
+  
+  get email (){
+    return this.formReg.controls['email'];
   }
-  validatorConfirmPassword(e:Event){
-    
+  get password (){
+    return this.formReg.controls['password'];
   }
-
+  get confirmPassword (){
+    return this.formReg.controls['confirmPassword'];
+  }
+  get showPassword (){
+    return this.formReg.controls['showPassword'];
+  }
 }

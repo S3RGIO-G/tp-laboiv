@@ -1,0 +1,7 @@
+<div class="keyboard-container gap-2">
+  <ng-container *ngFor="let item of letters">
+    <button class="key btn tex-center fw-bold {{item.active ? 'disabled' : ''}}" (click)="pressKey(item)">
+      {{item.letter}}
+    </button>
+  </ng-container>
+</div>

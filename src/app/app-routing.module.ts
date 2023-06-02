@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {canActivate, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
@@ -34,6 +35,24 @@ const routes: Routes = [
       import('./pages/quien-soy/quien-soy.component').then(
         (m) => m.QuienSoyComponent
       ),
+  },
+  {
+    path: 'ahorcado',
+    title: 'Ahorcado',
+    loadComponent: () =>
+      import('./pages/ahorcado/ahorcado.component').then(
+        (m) => m.AhorcadoComponent
+      ),
+      ...canActivate(()=> redirectUnauthorizedTo(['/login']))
+  },
+  {
+    path: 'mayoromenor',
+    title: 'Mayor o Menor',
+    loadComponent: () =>
+      import('./pages/mayoromenor/mayoromenor.component').then(
+        (m) => m.MayoromenorComponent
+      ),
+      ...canActivate(()=> redirectUnauthorizedTo(['/login']))
   },
   {
     path: '**',
