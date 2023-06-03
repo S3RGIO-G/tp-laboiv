@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './preguntados-about.component.html',
   styleUrls: ['./preguntados-about.component.css']
 })
-export class PreguntadosAboutComponent {
-
+export class PreguntadosAboutComponent implements OnInit {
+  @Output() playGame = new EventEmitter<boolean>();
+  
+  ngOnInit(): void {}
 }

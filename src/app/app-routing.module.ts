@@ -55,6 +55,24 @@ const routes: Routes = [
       ...canActivate(()=> redirectUnauthorizedTo(['/login']))
   },
   {
+    path: 'preguntados',
+    title: 'Preguntados',
+    loadComponent: () =>
+      import('./pages/preguntados/preguntados.component').then(
+        (m) => m.PreguntadosComponent
+      ),
+      ...canActivate(()=> redirectUnauthorizedTo(['/login']))
+  },
+  // {
+  //   path: 'mygame',
+  //   title: 'Mi Juego',
+  //   loadComponent: () =>
+  //     import('./pages/mygame').then(
+  //       (m) => m.
+  //     ),
+  //     ...canActivate(()=> redirectUnauthorizedTo(['/login']))
+  // },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full',

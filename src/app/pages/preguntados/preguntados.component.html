@@ -1,1 +1,12 @@
-<p>preguntados works!</p>
+<app-navbar [showButtons]="true" (userEvent)="usuario = $event" (loadingEvent)="loading = $event"></app-navbar>
+
+<ng-container *ngIf="!playGame">
+  <app-preguntados-about (playGame)="playGame = $event"></app-preguntados-about>
+</ng-container>
+
+<ng-container *ngIf="playGame">
+  <app-preguntados-game (playGame)="playGame = $event" (loadingEvent)="loading = $event"></app-preguntados-game>
+</ng-container>
+
+<app-chat [user]="usuario"></app-chat>
+<app-spinner [showSpinner]="loading"></app-spinner>

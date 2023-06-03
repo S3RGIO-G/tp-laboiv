@@ -4,16 +4,9 @@ import {
   collection,
   addDoc,
   collectionData,
-  query,
-  where,
-  getDoc,
-  doc,
-  setDoc,
-  updateDoc,
-  getDocs,
 } from '@angular/fire/firestore';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Message } from '../classes/message';
 
 @Injectable({

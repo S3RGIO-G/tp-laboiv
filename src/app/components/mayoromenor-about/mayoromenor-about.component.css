@@ -1,24 +1,18 @@
-.contenedor{
+.contenedor {
   height: 90vh;
   width: 100%;
-  background-color: var(--color-secondary);
 }
 
-.contenido{
+.contenido {
   border-radius: 25px;
   font-size: 12px;
-  border: 5px solid var(--color-primary);
-}
-
-.descripcion{
   width: 70vw;
   max-width: 600px;
+  border: 5px solid var(--color-tertiary);
 }
 
 @media (width > 410px) {
-
-  .contenido{
+  .contenido {
     font-size: 1rem;
   }
-
 }

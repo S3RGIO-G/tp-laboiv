@@ -1,1 +1,49 @@
-<p>preguntados-game works!</p>
+<div class="reset-container position-absolute start-0 ps-2 pt-2 ps-md-5 pt-md-5">
+  <button class="btn" (click)="playGame.emit(false)">
+    <i class="fa-solid fa-arrow-left fs-1"></i>
+  </button>
+</div>
+
+<div class="reset-container position-absolute end-0 pe-2 pt-2 pe-md-5 pt-md-5">
+  <button class="btn" (click)="resetGame()">
+    <i class="fa-solid fa-arrow-rotate-left fs-1 text-danger">
+    </i>
+  </button>
+</div>
+
+<div class="contenedor container-fluid bg-color-secondary d-flex justify-content-center align-items-center">
+  <div
+    class="content d-flex flex-column bg-color-primary rounded p-5 position-relative justify-content-center align-items-center">
+    <div class="score position-absolute start-0 ps-3 ps-sm-5 fw-bold">
+      Puntuacion : <b class="text-success">{{score}}</b>
+    </div>
+
+    <div class="lifes position-absolute end-0 pe-3 pe-sm-5 fw-bold">
+      <i class="fa-solid fa-heart {{lifes < 3 ? 'lose-life' : null}}"></i>
+      <i class="fa-solid fa-heart ms-2 {{lifes < 2 ? 'lose-life' : null}}"></i>
+      <i class="fa-solid fa-heart ms-2 {{lifes < 1 ? 'lose-life' : null}}"></i>
+    </div>
+
+    <div
+      class="question-container d-flex align-items-center justify-content-center p-3 p-sm-5 bg-color-secondary rounded w-100">
+      <h3 class="question text-center m-0 fw-bold">{{question}}</h3>
+    </div>
+
+    <div class="row w-100 mt-3">
+      <div *ngFor="let item of options; let i = index " class="col-12 col-sm-6 mt-3 {{i < 2 ? 'mt-sm-0': null}}">
+        <button class="btn btn-lg btn-option w-100 text-light bg-color-tertiary fw-bold"
+          (click)="selectAnswer($event.target, item.isValid)">
+          {{item.text}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-custom [showModal]="showModal">
+  <h2 class="mb-4">{{lifes ? '¡INCORRECTO!' : '¡PERDISTE!'}}</h2>
+  <p class="text-center m-0">La respuesta era: </p>
+  <b>{{answer}}</b>
+  <span *ngIf="!lifes" class="text-center">Puntaje total: <b>{{score}}</b></span>
+  <button class="btn btn-danger mt-3" (click)="funcModal()">{{lifes ? 'Continuar' : 'Reintentar'}}</button>
+</app-modal-custom>
