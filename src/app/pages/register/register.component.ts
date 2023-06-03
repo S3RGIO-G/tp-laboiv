@@ -53,6 +53,9 @@ export class RegisterComponent implements OnInit {
       .register(this.formReg.value)
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user))
+        const date = new Date();
+        const fullDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+        this.userService.addLogAuto({ date: fullDate, user: res.user.email });
         this.formReg.reset();
         this.router.navigate(['/home']);
       })

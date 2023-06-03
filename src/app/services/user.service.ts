@@ -26,6 +26,8 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class UserService {
   usersRef = collection(this.firestore, 'users');
+  logsRef = collection(this.firestore, 'logs');
+
   constructor(private auth: Auth, private firestore: Firestore) {}
 
   getCurrentUser() {
@@ -51,6 +53,10 @@ export class UserService {
     return addDoc(this.usersRef, user);
   }
 
+  addLogAuto(log: any){
+    return addDoc(this.logsRef, log);
+  }
+
   getUsersObserver(): Observable<User[]> {
     return collectionData(this.usersRef, { idField: 'id' }) as Observable<
       User[]
@@ -70,37 +76,37 @@ export class UserService {
     return getDoc(doc(this.usersRef, id));
   }
 
-  //** TESTING
-  setTest() {
-    const usuarioTest = {
-      email: 'sergio@gmail.com',
-      password: '12345678',
-      profile: 2,
-      gender: 2,
-      urlImg: '..',
-    };
+  // //** TESTING
+  // setTest() {
+  //   const usuarioTest = {
+  //     email: 'sergio@gmail.com',
+  //     password: '12345678',
+  //     profile: 2,
+  //     gender: 2,
+  //     urlImg: '..',
+  //   };
 
-    //* Setear un documento con un id especifico, si no existe lo crea.
-    //* Tiene que se un objeto normal.
+  //   //* Setear un documento con un id especifico, si no existe lo crea.
+  //   //* Tiene que se un objeto normal.
 
-    // setDoc(doc(this.usersRef, '8X0pYR650YaqYG.TESTING'), usuarioTest)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
+  //   // setDoc(doc(this.usersRef, '8X0pYR650YaqYG.TESTING'), usuarioTest)
+  //   //   .then((res) => console.log(res))
+  //   //   .catch((err) => console.log(err));
 
-    //* Obtener un documento por su id
+  //   //* Obtener un documento por su id
 
-    // getDoc(doc(this.usersRef, '8ko70UusxiZKkRcQUmYadPca1kj1'))
-    //   .then((res) => console.log(res.data()))
-    //   .catch((err) => console.log(err));
+  //   // getDoc(doc(this.usersRef, '8ko70UusxiZKkRcQUmYadPca1kj1'))
+  //   //   .then((res) => console.log(res.data()))
+  //   //   .catch((err) => console.log(err));
 
-    //* Obtener el primer documento de un array usando una query
+  //   //* Obtener el primer documento de un array usando una query
 
-    const consulta = query(
-      this.usersRef,
-      where('email', '==', 'sergio@gmail.com')
-    );
-    getDocs(consulta)
-      .then((res) => console.log(res.docs[0].data()))
-      .catch((err) => console.log(err));
-  }
+  //   const consulta = query(
+  //     this.usersRef,
+  //     where('email', '==', 'sergio@gmail.com')
+  //   );
+  //   getDocs(consulta)
+  //     .then((res) => console.log(res.docs[0].data()))
+  //     .catch((err) => console.log(err));
+  // }
 }

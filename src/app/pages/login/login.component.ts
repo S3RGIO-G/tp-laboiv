@@ -26,7 +26,7 @@ import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
     RouterModule,
     ReactiveFormsModule,
     ModalUsersComponent,
-    SpinnerComponent
+    SpinnerComponent,
   ],
 })
 export class LoginComponent implements OnInit {
@@ -56,6 +56,9 @@ export class LoginComponent implements OnInit {
       .login(this.formLog.value)
       .then((res) => {
         localStorage.setItem('user', JSON.stringify(res.user));
+        const date = new Date();
+        const fullDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+        this.userService.addLogAuto({ date: fullDate, user: res.user.email });
         this.router.navigate(['/home']);
       })
       .catch((err) => {
