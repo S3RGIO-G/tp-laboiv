@@ -1,25 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '@angular/fire/auth';
-import { ChatService } from 'src/app/services/chat.service';
-import { UserService } from 'src/app/services/user.service';
 import { Message } from 'src/app/classes/message';
+import { TimeChatPipe } from 'src/app/pipes/time-chat.pipe';
 
 @Component({
   selector: 'app-chat-messages',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TimeChatPipe],
   templateUrl: './chat-messages.component.html',
   styleUrls: ['./chat-messages.component.css'],
 })
 export class ChatMessagesComponent implements OnInit {
   @Input() messages: Array<Message> = [];
-  @Input() user !: User;
-  constructor(private chatService: ChatService, private userService : UserService) {
-    
-  }
-  ngOnInit(): void {
-  }
-
-
+  @Input() user!: User;
+  constructor() {}
+  ngOnInit(): void {}
 }

@@ -29,8 +29,6 @@ export class AhorcadoGameComponent implements OnInit {
 
   constructor(private wordService: WordService) {}
 
-  //TODO: Se podria mostrar las palabras con acento
-
   ngOnInit(): void {
     setTimeout(() => {
       this.loadWord();
@@ -39,9 +37,10 @@ export class AhorcadoGameComponent implements OnInit {
 
   loadWord() {
     this.loadingEvent.emit(true);
+
     this.wordService.getRandomWord().then((res) => {
       this.wordToGuess = res[0];
-      this.letters = this.wordService.normalizeWord(this.wordToGuess);
+      this.letters = this.wordService.transformWordToArray(this.wordToGuess);
       this.loadingEvent.emit(false);
     });
   }

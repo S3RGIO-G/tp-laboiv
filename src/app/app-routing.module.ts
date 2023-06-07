@@ -63,15 +63,15 @@ const routes: Routes = [
       ),
       ...canActivate(()=> redirectUnauthorizedTo(['/login']))
   },
-  // {
-  //   path: 'mygame',
-  //   title: 'Mi Juego',
-  //   loadComponent: () =>
-  //     import('./pages/mygame').then(
-  //       (m) => m.
-  //     ),
-  //     ...canActivate(()=> redirectUnauthorizedTo(['/login']))
-  // },
+  {
+    path: 'mygame',
+    title: 'Mi Juego',
+    loadComponent: () =>
+      import('./pages/my-game/my-game.component').then(
+        (m) => m.MyGameComponent
+      ),
+      ...canActivate(()=> redirectUnauthorizedTo(['/login']))
+  },
   {
     path: '**',
     redirectTo: 'home',

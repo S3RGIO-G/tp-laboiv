@@ -1,0 +1,73 @@
+.main {
+  min-height: 90vh;
+}
+
+.profile {
+  flex-direction: column;
+  max-width: 1000px;
+}
+
+.profile-img {
+  height: 125px;
+  width: 125px;
+}
+
+.profile-title {
+  font-size: 20px;
+}
+
+.profile-desc, .about-game {
+  font-size: 12px;
+}
+
+
+@media (width > 410px) {
+  .profile-img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .profile-title {
+    font-size: 28px;
+  }
+
+  .profile-desc {
+    font-size: 14px;
+  }
+}
+
+@media (width > 575px) {
+  .profile-img {
+    height: 220px;
+    width: 220px;
+  }
+
+  .profile-title {
+    font-size: 30px;
+  }
+
+  .about-game{
+    max-width: 1000px;
+    font-size: 14px;
+  }
+
+  .profile-desc{
+    font-size: 15px;
+  }
+
+  .profile {
+    flex-direction: row;
+  }
+}
+
+@media (width > 750px){
+  
+  .profile-img {
+    height: 250px;
+    width: 250px;
+  }
+
+.profile-desc {
+    font-size: 18px;
+  }
+}

@@ -1,0 +1,108 @@
+.contenedor {
+  height: 90vh;
+}
+
+.container-card {
+  width: 90vw;
+  max-width: 800px;
+}
+
+.flip {
+  animation: flip .75s 0s both;
+}
+
+.card {
+  transform-style: preserve-3d;
+  border: none;
+}
+
+.face {
+  position: absolute;
+  backface-visibility: hidden;
+  width: max-content;
+}
+
+.img-card, .card {
+  height: 80px;
+  width: 50px;
+}
+
+.img-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.card-number {
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.back {
+  z-index: 10;
+  transform: rotateY(180deg);
+}
+
+.front {
+  z-index: 20;
+}
+
+.bottom-number {
+  transform: rotate(180deg);
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0);
+    transform-origin: 100% 50%;
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+    transform-origin: 50% 50%;
+  }
+}
+
+.game-table{
+  padding: 20px;
+  background-image: url('../../../assets/background-blackjack-v2.jpg');
+  background-size: cover;
+  height: 350px;
+}
+
+@media (width > 410px) {
+  .img-card, .card {
+    height: 100px;
+    width: 60px;
+  }
+
+  .img-icon {
+    height: 40px;
+    width: 40px;
+  }
+
+  .card-number {
+    font-size: 18px;
+    padding-left: 10px;
+  }
+}
+
+@media (width > 575px) {
+  .img-card, .card {
+    height: 150px;
+    width: 100px;
+  }
+
+  .img-icon {
+    height: 60px;
+    width: 60px;
+  }
+
+  .card-number {
+    font-size: 24px;
+    padding-left: 15px;
+  }
+
+  .game-table{
+    height: 450px;
+  }
+}

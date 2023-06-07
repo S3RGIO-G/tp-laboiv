@@ -1,1 +1,50 @@
-<p>quien-soy works!</p>
+<app-navbar (userEvent)="usuario = $event" (loadingEvent)="loading = $event" [showButtons]="true"></app-navbar>
+
+<div class="main container-fluid d-flex gap-4 flex-column align-items-center justify-content-center bg-color-secondary">
+  <div class="profile d-flex align-items-center gap-4 p-2 p-sm-4 mt-3 bg-color-primary rounded">
+    <img src="../../../assets/profile.jpg" class="profile-img rounded">
+    <div class="d-flex gap-4 flex-column w-100 justify-content-center text-light">
+      <h2 class="profile-title text-center m-0">Sergio Gabriel Gonzalez</h2>
+      <div class="d-flex w-100 profile-desc">
+        <ul class="w-50">
+          <li><b>Nacionalidad : </b> Argentino</li>
+          <li><b>Edad : </b> 22 años</li>
+          <li><b>Fecha de Nacimiento : </b> 19/02/2001</li>
+          <li><b>Sexo : </b> Masculino</li>
+        </ul>
+        <ul class="w-50">
+          <li><b>Localidad : </b> Ezpeleta, Quilmes.</li>
+          <li><b>Curso : </b>4°B</li>
+          <li><b>Github : </b><a href="https://github.com/S3RGIO-G" target="_blank">S3RGIO-G</a></li>
+          <li><b>Pasatiempo : </b> VideoJuegos </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="about-game d-flex flex-column justify-content-center align-items-center text-center p-3 p-md-4 bg-color-primary text-light rounded mb-3">
+    <h2 class="fw-bold fs-1 mb-4">MI JUEGO</h2>
+    <p>
+      El juego que desarrolle es el BlackJack, basicamente consiste en un juego de cartas donde se compite contra el Dealer (Maquina) y no hay que pasarse de 21 puntos, se tiene la posibilidad de pedir una carta o quedarse con las que se tiene.
+    </p>
+    <p><b>OBJETIVO: </b> Tener mas puntos que el Dealer sin pasarte de 21</p>
+    <b>REGLAS: </b>
+    <li>Las cartas "J", "Q", "K" valen 10</li>
+    <li>La carta "A" vale 11 o 1, segun le convenga</li>
+    <li>El Dealer destapara su 2da carta cuando el jugador elija quedarse</li>
+    <li>El Dealer esta obligado a pedir cartas hasta que tenga un puntaje mayor o igual a 17</li>
+    <li>Si el jugador se pasa de 21, se termina el juego</li>
+    <li>Si el Dealer supera la puntuacion del jugador, se termina el juego</li>
+    <li>Si ambos tienen los mismos puntos, es un empate</li>
+    <li class="mb-3">Si el jugador supera la puntuacion del Dealer, gana el juego</li>
+
+    <div>
+      <a routerLink="/mygame"><button class="btn btn-success fs-4">¡Jugar!</button></a>
+    </div>
+  </div>
+
+</div>
+
+<app-spinner [showSpinner]="loading"></app-spinner>
+<app-chat [user]="usuario"></app-chat>

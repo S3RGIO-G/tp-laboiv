@@ -1,0 +1,93 @@
+<app-navbar (loadingEvent)="loading = $event" (userEvent)="usuario = $event" [showButtons]="true"></app-navbar>
+
+<div class="contenedor bg-color-secondary d-flex justify-content-center">
+  <div class="reset-container position-absolute start-0 ps-2 pt-2 ps-md-5 pt-md-5">
+    <a class="btn" routerLink="/quien-soy">
+      <i class="fa-solid fa-arrow-left fs-1"></i>
+    </a>
+  </div>
+  <div class=" d-flex flex-column justify-content-center">
+
+    <div
+      class="row container-card  bg-color-primary rounded p-4 justify-content-center align-items-center position-relative">
+
+      <div class="col-12 p-0 text-light text-center fw-bold fs-2 ">
+
+        <div class="game-table d-flex flex-column justify-content-between align-items-center w-100 my-4 ">
+
+
+          <div class="dealer-cards d-flex justify-content-center gap-3">
+
+            <ng-container *ngFor="let item of cardsDealer; let i = index">
+              <div *ngIf="i !== 1"
+                class="card d-flex justify-content-center align-items-center p-3 bg-color-primary {{i !== 1 ? 'flip': null}}">
+                <div class="front face">
+                  <img class="img-card" src="../../../assets/mayoromenor/back-card.png">
+                </div>
+                <div class="back face d-flex justify-content-center align-items-center">
+                  <b class="card-number position-absolute top-0 start-0 ">{{item | blackjack}}</b>
+                  <img class="img-card" src="../../../assets/mayoromenor/front-card.png">
+                  <img class="img-icon position-absolute" src="../../../assets/icon.png">
+                  <b class="card-number bottom-number position-absolute bottom-0 end-0 ">{{item | blackjack}}</b>
+                </div>
+              </div>
+              <div *ngIf="i === 1" #card
+                class="card d-flex justify-content-center align-items-center p-3 bg-color-primary {{i !== 1 ? 'flip': null}}">
+                <div class="front face">
+                  <img class="img-card" src="../../../assets/mayoromenor/back-card.png">
+                </div>
+                <div class="back face d-flex justify-content-center align-items-center">
+                  <b class="card-number position-absolute top-0 start-0 ">{{item | blackjack}}</b>
+                  <img class="img-card" src="../../../assets/mayoromenor/front-card.png">
+                  <img class="img-icon position-absolute" src="../../../assets/icon.png">
+                  <b class="card-number bottom-number position-absolute bottom-0 end-0 ">{{item | blackjack}}</b>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+
+          <div class="w-100 d-flex flex-column justify-content-between">
+            <span class="text-danger">Dealer : <b>{{scoreDealer}}</b></span>
+            <span class="text-success">Tú : <b>{{scorePlayer}}</b></span>
+          </div>
+
+          <div class="player-cards d-flex justify-content-center gap-3">
+
+            <ng-container *ngFor="let item of cardsPlayer">
+              <div class="card d-flex justify-content-center align-items-center p-3 bg-color-primary flip">
+                <div class="front face">
+                  <img class="img-card" src="../../../assets/mayoromenor/back-card.png">
+                </div>
+                <div class="back face d-flex justify-content-center align-items-center">
+                  <b class="card-number position-absolute top-0 start-0 ">{{item | blackjack}}</b>
+                  <img class="img-card" src="../../../assets/mayoromenor/front-card.png">
+                  <img class="img-icon position-absolute" src="../../../assets/icon.png">
+                  <b class="card-number bottom-number position-absolute bottom-0 end-0 ">{{item | blackjack}}</b>
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <button class="btn btn-lg btn-success w-100 fw-bold {{disableBtns ? 'disabled' : null}}"
+          (click)="giveCards()">PEDIR</button>
+      </div>
+      <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+        <button class="btn btn-lg btn-danger w-100 fw-bold {{disableBtns ? 'disabled' : null}}"
+          (click)="holdCards()">QUEDARSE</button>
+      </div>
+    </div>
+  </div>
+
+  <app-modal-custom [showModal]="showModal">
+    <h2 class="mb-4">¡{{modalData?.title}}!</h2>
+    <span class="text-center mb-3">{{modalData?.description}}</span>
+    <button class="btn {{modalData?.btnClass}}" (click)="playAgain()">{{modalData?.btnText}}</button>
+  </app-modal-custom>
+</div>
+
+<app-chat [user]="usuario"></app-chat>

@@ -10,6 +10,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BlackjackPipe } from './pipes/blackjack.pipe';
 
 @NgModule({
   declarations: [
