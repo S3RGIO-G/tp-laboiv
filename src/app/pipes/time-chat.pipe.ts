@@ -15,8 +15,8 @@ export class TimeChatPipe implements PipeTransform {
     const days = Math.floor(hours / 24);
     let mensaje = ''
     if (seconds < 60) mensaje = 'Justo Ahora';
-    if (minutes < 60) mensaje = `Hace ${minutes} minutos`;
-    if(hours >= 1 && hours < 24) mensaje = `Hace ${hours} ${hours === 1 ? 'hora' : 'horas'}`
+    if (minutes !== 0 && minutes < 60) mensaje = `Hace ${minutes} minutos`;
+    if(hours !== 0 && hours < 24) mensaje = `Hace ${hours} ${hours === 1 ? 'hora' : 'horas'}`
     if(days > 0){
       const date = new Date(dateTime);
       const dateDay = `${date.getDate()}/${date.getMonth()}`;
